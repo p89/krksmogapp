@@ -1,0 +1,62 @@
+body {
+    background-color: #222;
+    color: white;
+}
+
+.center {
+    text-align: justify;
+    width: 70%;
+    margin: 0px auto;
+    height: 0px;
+}
+
+.stations {
+    height: 300px;
+    width: 300px;
+    background-color: #587;
+    margin: 50px;
+   /* float: left;*/
+    border-radius: 50%;
+    text-align: center;
+    padding: 100px auto;
+    display: inline-block;
+    vertical-align: top;
+    
+}
+
+.center:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+}
+
+h3 {
+    margin-top: 95px;
+    font-size: 100px;
+}
+
+.pm50 { 
+background-color: green !important;
+}
+
+.pm100 { 
+background-color: yellow !important;
+}
+
+.pm150 { 
+background-color: orange !important;
+}
+
+.pm200 { 
+background-color: red !important;
+}
+
+.pm250 { 
+background-color: violet !important;
+}
+
+.pm251 { 
+background-color: black !important;
+}
+
+
