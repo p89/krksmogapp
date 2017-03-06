@@ -3,8 +3,14 @@ $(document).ready(function() {
     function buttonColoring (value, target) {
 
         switch (true) {
-            case value <= 50:       
+            case value <= 25:       
+                $(target).addClass('pm25');
+                break;
+            case value <= 50:
                 $(target).addClass('pm50');
+                break;
+            case value <= 75:
+                $(target).addClass('pm75');
                 break;
             case value <= 100:
                 $(target).addClass('pm100');
@@ -12,26 +18,20 @@ $(document).ready(function() {
             case value <= 150:
                 $(target).addClass('pm150');
                 break;
-            case value <= 200:
-                $(target).addClass('pm200');
-                break;
-            case value <= 250:
-                $(target).addClass('pm250');
-                break;
-            case value > 250:
-                $(target).addClass('pm251');
+            case value > 151:
+                $(target).addClass('pm151');
                 break;    
-            }
-     };
+        }
+    };
 
-     function useBackupAPI () {
+    function useBackupAPI () {
 
         // --------- code for api.waqi.info 
 
-    //alt token for Waqi bb892cfadf429d1f082713c403d0409f853d9559
-    const apiWaqi = "https://api.waqi.info/map/bounds/?latlng=49.906700,20.172406,50.135416, 19.753533&token=116aeb0ae86ca95196f331f9b0333adb0aa95a7b";
-    const backupApi = $.getJSON(apiWaqi, function(smogdata) {
-        
+        //alt token for Waqi bb892cfadf429d1f082713c403d0409f853d9559
+        const apiWaqi = "https://api.waqi.info/map/bounds/?latlng=49.906700,20.172406,50.135416, 19.753533&token=116aeb0ae86ca95196f331f9b0333adb0aa95a7b";
+        const backupApi = $.getJSON(apiWaqi, function(smogdata) {
+            
         let stationsIDS = {
             zlotyRog:   8691,
             alejKras:   3402,
@@ -49,17 +49,16 @@ $(document).ready(function() {
             }
         });
 
+        function displayPMI (stationID, index, tArray) { 
 
-        function displayPMI (stationID, index) { 
-
-            for (let i = 0; i < arr.length; i++) {
+            for (let i = 0; i < tArray.length; i++) {
                            
                 let divNr = `#div${index}`; 
 
-                if (arr[i].uid === stationID) {
-                    if (arr[i].uid !== "-") { 
-                        buttonColoring(arr[i].aqi, divNr);
-                        return arr[i].aqi; 
+                if (tArray[i].uid === stationID) {
+                    if (tArray[i].uid !== "-") { 
+                        buttonColoring(tArray[i].aqi, divNr);
+                        return tArray[i].aqi; 
                     } else {             
                         return "n/a";               
                     }
@@ -67,16 +66,14 @@ $(document).ready(function() {
             }
         };
 
-        $('#station0').html(displayPMI(stationsIDS.alejKras, 0));
-        $('#station1').html(displayPMI(stationsIDS.bulwarowa, 1));
-        $('#station2').html(displayPMI(stationsIDS.kurdwanow, 2));
-        $('#station3').html(displayPMI(stationsIDS.dietla, 3));
-        $('#station4').html(displayPMI(stationsIDS.piastow, 4));
-        $('#station5').html(displayPMI(stationsIDS.zlotyRog, 5));
+        $('#station0').html(displayPMI(stationsIDS.alejKras, 0, arr));
+        $('#station1').html(displayPMI(stationsIDS.bulwarowa, 1, arr));
+        $('#station2').html(displayPMI(stationsIDS.kurdwanow, 2, arr));
+        $('#station3').html(displayPMI(stationsIDS.dietla, 3, arr));
+        $('#station4').html(displayPMI(stationsIDS.piastow, 4, arr));
+        $('#station5').html(displayPMI(stationsIDS.zlotyRog, 5, arr));
 
         });
-
-
      };
 
 
@@ -121,7 +118,7 @@ $(document).ready(function() {
         function StatusObject (id) {
 
             this.fieldName = `#div${id}`;
-            this.name = checkForErr(id, null, 'station_name') ;
+            this.name = checkForErr(id, null, 'station_name');
             this.hour = checkForErr(id, null, 'station_hour');
             this.status = checkForErr(id, 0, 'details', 'g_nazwa');
             this.pm10 = checkForErr(id, 0, 'details', 'o_value');
@@ -139,7 +136,6 @@ $(document).ready(function() {
                     "Poziom NO2:"                   : this.no2,
                     "Poziom CO:"                    : this.co
                 };
-
             };
         };
 
@@ -149,26 +145,40 @@ $(document).ready(function() {
         let Station3 = new StatusObject(3);
         let Station4 = new StatusObject(4);
         let Station5 = new StatusObject(5);
+        let stations = [Station0, Station1, Station2, Station3, Station4, Station5];
 
-console.log(Station0.getValues());
-console.log(Station1.getValues());
-console.log(Station2.getValues());
-console.log(Station3.getValues());
-console.log(Station4.getValues());
-console.log(Station5.getValues());
+        function displayPMImain (index, tArray) { 
+            $(`#station${index}`).html(tArray[index].status);
+            buttonColoring(tArray[index].pm10, `#div${index}`);
+        };
 
+        for (var i = 0; i < stations.length; i++) {
+            displayPMImain(i, stations);
+            displayDetails (`#cloudInfo${i}`, stations[i].getValues());
+
+        }
+
+        function displayDetails (target, obj) {
+
+            let object = obj;
+            for (key in object) {
+                $(target).append(key + " " + object[key] + "<br>");
+            }
+        }
+
+        //$('.stations').each().hover( () => $('.stations').children().toggleClass('invisible'));        
+
+        $('#div0').hover( () => $('#cloudInfo0').toggleClass('invisible'));
+        $('#div1').hover( () => $('#cloudInfo1').toggleClass('invisible'));
+        $('#div2').hover( () => $('#cloudInfo2').toggleClass('invisible'));
+        $('#div3').hover( () => $('#cloudInfo3').toggleClass('invisible'));
+        $('#div4').hover( () => $('#cloudInfo4').toggleClass('invisible'));
+        $('#div5').hover( () => $('#cloudInfo5').toggleClass('invisible'));
     
-  
-    
-
     } else {
       useBackupAPI();
     };
-
 }).fail(function() {  
-
     useBackupAPI();
-    
-});
-
+    });
 });
