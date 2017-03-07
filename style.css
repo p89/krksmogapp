@@ -61,11 +61,12 @@ body {
 
 .mains {
     margin: 120px 0 0 0;
+
 }
 
 .line {
     position: absolute;
-    left: 49.5%;
+    left: 50%;
     top: 25px;
     bottom: -192px;
     width: 3px;
@@ -85,12 +86,12 @@ body {
 }
 
 .wwright {
-    left: 50.5%;
+    left: 50.8%;
     text-align: left;
 }
 
 .wwleft {
-    right: 51.3%;
+    right: 50.7%;
     text-align: right;
 }
 
@@ -120,6 +121,18 @@ body {
     content: "";
     width: 100%;
     display: inline-block;
+}
+
+.backupCloud {
+
+    font-size: 60px;
+    vertical-align: middle !important;
+    text-align: center !important;
+    line-height: 100px !important;
+    /*margin: -50px 30px 30px 30px !important;
+    display: block !important; 
+    align-items: center !important;*/
+
 }
 
 h3 {
@@ -168,19 +181,18 @@ h3 {
 }
 
 #cloudInfo0 {
-    left: -268px;
+    left: -267px;
     top: 90px;
 }
 
 #cloudInfo1 {
-    left: -268px;
+    left: -267px;
     top: 260px;
     z-index: 2;
 }
 
-
 #cloudInfo2 {
-    left: -268px;
+    left: -267px;
     top: 435px;
 }
 
@@ -203,5 +215,9 @@ h3 {
 
 
 .invisible {
-    display: none !important;
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible !important;
 }

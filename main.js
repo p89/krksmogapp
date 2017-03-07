@@ -24,6 +24,22 @@ $(document).ready(function() {
         }
     };
 
+    // hover function caused issues while cursor was on a div during api data load, used mousenter/leave instead
+    function cloudHandler (target, id) {
+        $(target).on({ mouseenter: () => $(`#cloudInfo${id}`).addClass('visible'),
+                       mouseleave: () => $(`#cloudInfo${id}`).removeClass('visible')         
+        });
+    }
+
+    function cloudHandlerStart () {
+
+        for (var i = 0; i < clouds.length; i++) {
+            cloudHandler(clouds[i], [i]);
+        }
+    }
+
+    let clouds = ['#kras','#bulw','#buja','#diet','#pias','#zlot'];
+
     function useBackupAPI () {
 
         // --------- code for api.waqi.info 
@@ -49,29 +65,29 @@ $(document).ready(function() {
             }
         });
 
-        function displayPMI (stationID, index, tArray) { 
+        function displayPMI (stationID, index) { 
 
-            for (let i = 0; i < tArray.length; i++) {
-                           
+            for (let i = 0; i < arr.length; i++) {
+
                 let divNr = `#div${index}`; 
-
-                if (tArray[i].uid === stationID) {
-                    if (tArray[i].uid !== "-") { 
-                        buttonColoring(tArray[i].aqi, divNr);
-                        return tArray[i].aqi; 
-                    } else {             
-                        return "n/a";               
+                if (arr[i].uid === stationID) {
+                    if (arr[i].uid !== "-") { 
+                        buttonColoring(arr[i].aqi, divNr);
+                        value = arr[i].aqi;             
                     }
                 }
             }
+            $(`#cloudInfo${index}`).html('<div class="backupCloud">PM10: ' + value + '</div>');
         };
 
-        $('#station0').html(displayPMI(stationsIDS.alejKras, 0, arr));
-        $('#station1').html(displayPMI(stationsIDS.bulwarowa, 1, arr));
-        $('#station2').html(displayPMI(stationsIDS.kurdwanow, 2, arr));
-        $('#station3').html(displayPMI(stationsIDS.dietla, 3, arr));
-        $('#station4').html(displayPMI(stationsIDS.piastow, 4, arr));
-        $('#station5').html(displayPMI(stationsIDS.zlotyRog, 5, arr));
+        displayPMI(stationsIDS.alejKras, 0);
+        displayPMI(stationsIDS.bulwarowa, 1);
+        displayPMI(stationsIDS.kurdwanow, 2);
+        displayPMI(stationsIDS.dietla, 3);
+        displayPMI(stationsIDS.piastow, 4);
+        displayPMI(stationsIDS.zlotyRog, 5);
+
+        cloudHandlerStart();
 
         });
      };
@@ -90,7 +106,7 @@ $(document).ready(function() {
     // & possibly more
     // added additional condition to check whether the random index returns true 
     
-    if (true){//(results.dane.actual[5].details[0]) {    
+    if (results.dane.actual[5].details[0]) {    
 
     
         let defaultVal =  "n/a";
@@ -99,12 +115,9 @@ $(document).ready(function() {
             
             if(property === 'station_name' && data[id][property] !== undefined) {
                 return data[id][property];
-
             } else if(property === 'station_hour' && data[id][property] !== undefined) {
                 return data[id][property] + ":00";
-
             } else if(position in data[id][property]){
-                
                 return data[id][property][position][tail];
             } else {
                 return defaultVal;
@@ -128,7 +141,6 @@ $(document).ready(function() {
     
             this.getValues = function () {
                 return {
-                    //"Nazwa stacji:"                 : this.name,
                     "Godzina pomiaru:"              : this.hour,
                     "Aktualny stan powietrza:"      : this.status,
                     "Poziom PM 10:"                 : this.pm10,
@@ -146,6 +158,7 @@ $(document).ready(function() {
         let Station4 = new StatusObject(4);
         let Station5 = new StatusObject(5);
         let stations = [Station0, Station1, Station2, Station3, Station4, Station5];
+        
 
         function displayPMImain (index, tArray) { 
             $(`#station${index}`).html(tArray[index].name);
@@ -155,7 +168,6 @@ $(document).ready(function() {
         for (var i = 0; i < stations.length; i++) {
             displayPMImain(i, stations);
             displayDetails (`#cloudInfo${i}`, stations[i].getValues());
-
         }
 
         function displayDetails (target, obj) {
@@ -166,15 +178,8 @@ $(document).ready(function() {
             }
         }
 
-        //$('.stations').each().hover( () => $('.stations').children().toggleClass('invisible'));        
-
-        $('#div0').hover( () => $('#cloudInfo0').toggleClass('invisible'));
-        $('#div1').hover( () => $('#cloudInfo1').toggleClass('invisible'));
-        $('#div2').hover( () => $('#cloudInfo2').toggleClass('invisible'));
-        $('#div3').hover( () => $('#cloudInfo3').toggleClass('invisible'));
-        $('#div4').hover( () => $('#cloudInfo4').toggleClass('invisible'));
-        $('#div5').hover( () => $('#cloudInfo5').toggleClass('invisible'));
-    
+        cloudHandlerStart();
+   
     } else {
       useBackupAPI();
     };
