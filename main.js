@@ -99,11 +99,6 @@ $(document).ready(function() {
 
     $.getJSON(finalUrl, function(results) {
 
-    // there are several ways the getJSON api download can fail:
-    // a) proxy can die  b) api can die  c) api and proxy can live but api can return null
-    // & more
-    // added additional condition to check whether the random index returns true 
-    
     if (results.dane.actual[5].details[0]) {    
 
         const defaultVal =  "n/a";
