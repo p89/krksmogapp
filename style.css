@@ -33,12 +33,11 @@ body {
 
 
 #div3 {
-
     margin-top: 40px !important;
 }
 
 #logo {
-    font: 36px Passion One,sans-serif;
+    font: 36px 'Passion One',sans-serif;
     color: #a3a3a3;
     margin: 20px auto;
 }
@@ -56,12 +55,10 @@ body {
     width: 100%;
     margin: 0 auto;
     height: 400px;
-  
 }
 
 .mains {
     margin: 120px 0 0 0;
-
 }
 
 .line {
@@ -75,7 +72,6 @@ body {
 }
 
 .wordwrapper {
-    /*//text-align: center;*/
     height: 12px;
     position: absolute;
     left: 0;
@@ -97,7 +93,6 @@ body {
 
 .word {
     color: #ccc;
-    
     padding: 3px;
     font-family: 'Ubuntu Condensed', sans-serif;
     font-size: 36px;
@@ -108,13 +103,11 @@ body {
     width: 300px;
     background-color: #587;
     margin: 30px;
-   /* float: left;*/
     border-radius: 50%;
     text-align: center;
     padding: 30px auto;
     display: inline-block;
     vertical-align: top;
-    
 }
 
 .center:after {
@@ -129,39 +122,29 @@ body {
     vertical-align: middle !important;
     text-align: center !important;
     line-height: 100px !important;
-    /*margin: -50px 30px 30px 30px !important;
-    display: block !important; 
-    align-items: center !important;*/
-
-}
-
-h3 {
-    margin-top: 125px;
-    font-size: 40px;
-    /*color: #0e2344;*/
 }
 
 .pm25 { 
     color: #97f27d !important;
 }
 
-.pm50 { 
+.pm60 { 
     color: #5eff66 !important;
 }
 
-.pm75 { 
+.pm100 { 
     color: #ffff70 !important;
 }
 
-.pm100 { 
+.pm150 { 
     color: #ffaa42 !important;
 }
 
-.pm150 { 
+.pm200 { 
     color: #ff4b41 !important;
 }
 
-.pm151 { 
+.pm201 { 
     color: #ff4189 !important;
 }
 
@@ -180,39 +163,37 @@ h3 {
     align-items: center;
 }
 
-#cloudInfo0 {
+.leftClouds {
     left: -267px;
+}
+
+#cloudInfo0 {
     top: 90px;
 }
 
 #cloudInfo1 {
-    left: -267px;
     top: 260px;
-    z-index: 2;
 }
 
 #cloudInfo2 {
-    left: -267px;
     top: 435px;
 }
 
-#cloudInfo3 {
-
+.rightClouds {
     right: -268px;
-    top: -5px;
-    
+}
+
+#cloudInfo3 {
+    top: -5px; 
 }
 
 #cloudInfo4 {
-    right: -268px;
     top: 170px;
 }
 
 #cloudInfo5 {
-    right: -268px;
     top: 340px;
 }
-
 
 .invisible {
     visibility: hidden;
