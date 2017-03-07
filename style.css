@@ -1,13 +1,105 @@
+@import url('https://fonts.googleapis.com/css?family=Passion+One');
+@import url('https://fonts.googleapis.com/css?family=Ubuntu+Condensed');
+
 body {
     background-color: #0e2344;
-    color: white;
+    color: #a3a3a3;
+}
+
+.divlist {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+}
+
+#lightgreen {
+    background-color: #97f27d;
+}
+#green {
+    background-color: #5eff66;
+}
+#yellow {
+    background-color: #ffff70;
+}
+#orange {
+    background-color: #ffaa42;
+}
+#red {
+    background-color: #ff4b41;
+}
+#violet {
+    background-color: #ff4189;
+}
+
+
+#div3 {
+
+    margin-top: 40px !important;
+}
+
+#logo {
+    font: 36px Passion One,sans-serif;
+    color: #a3a3a3;
+    margin: 20px auto;
 }
 
 .center {
-    text-align: justify;
-    width: 70%;
+    text-align: center;
+    width: 100%;
     margin: 0px auto;
     height: 0px;
+    border: solid white 1px;
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    height: 400px;
+  
+}
+
+.mains {
+    margin: 120px 0 0 0;
+}
+
+.line {
+    position: absolute;
+    left: 49.5%;
+    top: 25px;
+    bottom: -192px;
+    width: 3px;
+    background: #ccc;
+    z-index: 1;
+}
+
+.wordwrapper {
+    /*//text-align: center;*/
+    height: 12px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 10%;
+    margin-top: -12px;
+    z-index: 2;
+}
+
+.wwright {
+    left: 50.5%;
+    text-align: left;
+}
+
+.wwleft {
+    right: 51.3%;
+    text-align: right;
+}
+
+.word {
+    color: #ccc;
+    
+    padding: 3px;
+    font-family: 'Ubuntu Condensed', sans-serif;
+    font-size: 36px;
 }
 
 .stations {
@@ -33,77 +125,80 @@ body {
 h3 {
     margin-top: 125px;
     font-size: 40px;
-    color: #0e2344;
+    /*color: #0e2344;*/
 }
 
 .pm25 { 
-background-color: #97f27d !important;
+    color: #97f27d !important;
 }
 
 .pm50 { 
-background-color: #5eff66 !important;
+    color: #5eff66 !important;
 }
 
 .pm75 { 
-background-color: #ffff70 !important;
+    color: #ffff70 !important;
 }
 
 .pm100 { 
-background-color: #ffaa42 !important;
+    color: #ffaa42 !important;
 }
 
 .pm150 { 
-background-color: #ff4b41 !important;
+    color: #ff4b41 !important;
 }
 
 .pm151 { 
-background-color: #ff4189 !important;
+    color: #ff4189 !important;
 }
 
 .cloudInfo {
-    border: solid yellow 1px;
+    border: solid #080920 1px;
     position: absolute;
-    left: 400px;
-    top: 140px;
     z-index: 1;
+    width: 250px;
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
-    font-size: 12px;
-    padding: 20px;
+    font-size: 13px;
+    padding: 5px 5px 5px 15px;
     border-radius: 5px;
     min-height: 10em;
     display: flex;
     align-items: center;
 }
 
-#cloudInfo1 {
-    position: absolute;
-    left: 700px;
-    top: 140px;
+#cloudInfo0 {
+    left: -268px;
+    top: 90px;
 }
 
+#cloudInfo1 {
+    left: -268px;
+    top: 260px;
+    z-index: 2;
+}
+
+
 #cloudInfo2 {
-    position: absolute;
-    left: 1000px;
-    top: 140px;
+    left: -268px;
+    top: 435px;
 }
 
 #cloudInfo3 {
-    position: absolute;
-    left: 400px;
-    top: 540px;
+
+    right: -268px;
+    top: -5px;
+    
 }
 
 #cloudInfo4 {
-    position: absolute;
-    left: 700px;
-    top: 540px;
+    right: -268px;
+    top: 170px;
 }
 
 #cloudInfo5 {
-    position: absolute;
-    left: 1000px;
-    top: 540px;
+    right: -268px;
+    top: 340px;
 }
 
 

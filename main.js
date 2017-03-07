@@ -90,7 +90,7 @@ $(document).ready(function() {
     // & possibly more
     // added additional condition to check whether the random index returns true 
     
-    if (results.dane.actual[5].details[0]) {    
+    if (true){//(results.dane.actual[5].details[0]) {    
 
     
         let defaultVal =  "n/a";
@@ -128,9 +128,9 @@ $(document).ready(function() {
     
             this.getValues = function () {
                 return {
-                    "Nazwa stacji:"                 : this.name,
+                    //"Nazwa stacji:"                 : this.name,
                     "Godzina pomiaru:"              : this.hour,
-                    "Aktualna jakość powietrza:"    : this.status,
+                    "Aktualny stan powietrza:"      : this.status,
                     "Poziom PM 10:"                 : this.pm10,
                     "Poziom PM 2,5:"                : this.pm25,
                     "Poziom NO2:"                   : this.no2,
@@ -148,7 +148,7 @@ $(document).ready(function() {
         let stations = [Station0, Station1, Station2, Station3, Station4, Station5];
 
         function displayPMImain (index, tArray) { 
-            $(`#station${index}`).html(tArray[index].status);
+            $(`#station${index}`).html(tArray[index].name);
             buttonColoring(tArray[index].pm10, `#div${index}`);
         };
 
